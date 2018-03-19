@@ -3,13 +3,14 @@
 
 import numpy as np
 import matplotlib.pyplot as pyplot
+from time import sleep
 
 from pprint import pprint
 
-global click_xy
 click_xy = None
 
 COLOUR_INCREMENT = 0.1
+DELAY_SECONDS = 0.05
 
 xy_scale = (8, 8)
 graph_image = pyplot.figure()
@@ -46,7 +47,8 @@ def on_keypress(event):
         R=subtract_red,
         g=add_green,
         G=subtract_green,
-        P=reset_colour
+        P=reset_colour,
+        t=fade_red
     )
     key = event.key
     # pprint(key)
@@ -124,10 +126,10 @@ def change_all_colour(element, how):
         points_to_change = points
 
     for point in points_to_change:
-        pprint('changing point: {}'.format(point))
-        pprint('was {}'.format(polygons[point]['colour']))
+        # pprint('changing point: {}'.format(point))
+        # pprint('was {}'.format(polygons[point]['colour']))
         polygons[point]['colour'] = change_colour(polygons[point]['colour'], element, how)
-        pprint('now {}'.format(polygons[point]['colour']))
+        # pprint('now {}'.format(polygons[point]['colour']))
 
     set_polygon_colour_all()
     graph_image.canvas.draw()
@@ -174,6 +176,14 @@ def add_green():
 
 def subtract_green():
     change_all_colour('green', 'subtract')
+
+
+def fade_red():
+    for step in range(int(1 / COLOUR_INCREMENT) + 1):
+        change_all_colour('red', 'add')
+        change_all_colour('green', 'subtract')
+        change_all_colour('blue', 'subtract')
+        sleep(DELAY_SECONDS)
 
 
 def bye():
