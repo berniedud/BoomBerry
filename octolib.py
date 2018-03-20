@@ -120,25 +120,13 @@ def make_wave(mc, element, centre=(0, 0), steps=20, magnitude=20, duration=5.0):
     get_wave_map = np.vectorize(get_wave_value)
     prior_condition = mc.get(element)
     distance_map = make_distance_map(prior_condition, centre)
-    # pprint('distance_map')
-    # pprint(distance_map)
-    # exit()
     min_distance = distance_map.min()
     max_distance = distance_map.max()
     total_steps = steps + max_distance - min_distance
     sleep_time = float(duration) / total_steps
     for step in range(total_steps) + min_distance:
         index_map = (step - distance_map + 1) * np.less_equal(distance_map, step) - 1
-        # index_map = index_map * np.less_equal(index_map, total_steps)
         increment_map = get_wave_map(index_map)
-        # pprint('step: {}'.format(step))
-        # pprint('prior:')
-        # pprint(prior_condition)
-        # pprint('index_map:')
-        # pprint(index_map)
-        # pprint('increment:')
-        # pprint(increment_map)
-        # exit()
         new_condition = prior_condition + increment_map
         mc.set(element, new_condition)
         sleep(sleep_time)
