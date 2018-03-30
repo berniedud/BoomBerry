@@ -26,6 +26,7 @@ def display_on_hat():
         pixels.append(row)
     print(pixels)
     un.set_pixels(pixels)
+    un.show()
     
 
 if __name__ == '__main__':
