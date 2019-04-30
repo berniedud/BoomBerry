@@ -1,6 +1,7 @@
 import pyaudio
 import numpy as np
 import time
+import librosa
 
 from pprint import pprint
 from datetime import datetime
@@ -13,13 +14,17 @@ all_data = []
 
 def callback(in_data, frame_count, time_info, flag):
     audio_data = np.fromstring(in_data, dtype=np.float32)
+    # music = librosa.load(audio_data)
+
+    beat = librosa.feature.tempogram(audio_data)
+    pprint(beat)
     # Instead of printing, process here the audio chunk 'audio_data' with libROSA
     # [...]
     # pprint(audio_data)
     ad_len = audio_data.size
     ad_max = audio_data.max()
     ad_min = audio_data.min()
-    pprint(['len: {}'.format(ad_len), 'min: {}'.format(ad_min), 'max: {}'.format(ad_max)])
+    # pprint(['len: {}'.format(ad_len), 'min: {}'.format(ad_min), 'max: {}'.format(ad_max)])
     all_data.append(audio_data)
 
     return None, pyaudio.paContinue
@@ -49,4 +54,4 @@ def stream_audio(time_limit=0):
 
 
 if __name__ == '__main__':
-    stream_audio()
+    stream_audio(time_limit=10)
