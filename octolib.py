@@ -65,6 +65,7 @@ def ramp_colour(mc, element, ranges=None, increment=1, steps=1, duration=2, inte
 
 
 def get_element_shape(mc, element, ranges=None, cache={}):
+    # this caching method is broken!
     element_shape = cache.get(element)
     if element_shape is None:
         element_shape = np.zeros_like(mc.get(element))
