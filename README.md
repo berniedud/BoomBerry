@@ -7,5 +7,7 @@ Requirements:
 - a unicorn HAT for the pi
 - unicornhat library:
   - includes actual c library and python wrapper (ws2812.py)
-`curl https://get.pimoroni.com/unicornhat | bash
-`
+`curl https://get.pimoroni.com/unicornhat | bash`
+
+- [pyaudio](http://people.csail.mit.edu/hubert/pyaudio/)
+- 

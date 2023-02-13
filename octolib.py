@@ -1,5 +1,5 @@
 import numpy as np
-import memcache
+from pymemcache.client.base import Client as MemcacheClient
 from time import sleep
 
 red = green = blue = locks = np.zeros([8,8], int)
@@ -10,7 +10,7 @@ octo_grid_zeros = dict(
     locks=locks
 )
 
-mc = memcache.Client(['127.0.0.1:11211'])
+mc = MemcacheClient('127.0.0.1:11211')
 MIN_THRESHOLD = 0
 MAX_THRESHOLD = 255
 
