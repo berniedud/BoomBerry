@@ -11,7 +11,7 @@ from octolib import mc
 
 DEFAULT_SAMPLE_RATE = 44100
 DEFUALT_CHUNK_SIZE = 64
-DEFAULT_BUFFER_SIZE = 2000      # ths is the number of audio chunks to keep
+DEFAULT_BUFFER_SIZE = 2000      # this is the number of audio chunks to keep
 DEFAULT_REPORT_INTERVAL = 0.5   # seconds between reports
 
 all_data = []

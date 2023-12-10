@@ -1,5 +1,7 @@
-pyaudio
-numpy
-librosa
-pymemcache
 flask
+librosa
+matplotlib
+numpy
+pyaudio
+pymemcache
+tones
